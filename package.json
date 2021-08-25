@@ -1,0 +1,21 @@
+{
+  "name": "algo_visual",
+  "version": "1.0.0",
+  "description": "A package that help us to visualize the sorting algorithms using some frontend adn chart js",
+  "main": "script.js",
+  "dependencies": {
+    "browserify": "^17.0.0",
+    "chart.js": "^3.5.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
+  },
+  "scripts": {
+    "test": "algo-start",
+    "bundle": "browserify ./build/src/script.js > bundle.js",
+    "convert": "babel ./src/script.js -d build"
+  },
+  "author": "Chetan Khachane",
+  "license": "ISC"
+}
