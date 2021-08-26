@@ -59,19 +59,22 @@ class Init_Chart extends V_algo{
   setConfig(backgroundColor , {red , green ,blue ,opacity},label){
 
 	  console.log('configured')
+
 		this.labels = this.arr.map( (item,index) => index )
+
 		this.backgroundColor  = this.arr.map(()=>  backgroundColor )
 
 		this.borderColor  = this.arr.map(()=> `rgba(${Math.round(Math.random(1,255)*red)},${Math.round(Math.random(1,255)*green)},${Math.round(Math.random(1,255)*blue)},${opacity})`)
 	
 		const data = this.chart.data.datasets[0]
-
+			console.log(data)
 		data.labels = this.labels
 		data.backgroundColor = this.backgroundColor
 		data.borderColor = this.borderColor
 		data.label = label
 
 		this.updateChart()
+		console.log(data)
   }
 
 
@@ -79,6 +82,7 @@ class Init_Chart extends V_algo{
   	this.chart.update()
   }
 }
+
 const visual = new V_algo()
 visual.constructRandomArray(10)
 const myChart  = new Init_Chart(ctx)
@@ -86,5 +90,6 @@ const myChart  = new Init_Chart(ctx)
 myChart.setConfig('rgba(249, 212, 35, 1)',{
 	red : 45,
 	green : 104,
-	blue : 234
-},0.8)
+	blue : 234,
+	opacity :0.8 
+},'Sample')

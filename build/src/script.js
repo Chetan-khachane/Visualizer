@@ -78,9 +78,11 @@ var Init_Chart = function (_V_algo) {
 
 
 			console.log('configured');
+
 			this.labels = this.arr.map(function (item, index) {
 				return index;
 			});
+
 			this.backgroundColor = this.arr.map(function () {
 				return backgroundColor;
 			});
@@ -90,13 +92,14 @@ var Init_Chart = function (_V_algo) {
 			});
 
 			var data = this.chart.data.datasets[0];
-
+			console.log(data);
 			data.labels = this.labels;
 			data.backgroundColor = this.backgroundColor;
 			data.borderColor = this.borderColor;
 			data.label = label;
 
 			this.updateChart();
+			console.log(data);
 		}
 	}, {
 		key: 'updateChart',
@@ -115,5 +118,6 @@ var myChart = new Init_Chart(ctx);
 myChart.setConfig('rgba(249, 212, 35, 1)', {
 	red: 45,
 	green: 104,
-	blue: 234
-}, 0.8);
+	blue: 234,
+	opacity: 0.8
+}, 'Sample');
