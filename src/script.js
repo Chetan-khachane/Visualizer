@@ -2,22 +2,11 @@ const ctx = document.getElementById('myChart').getContext('2d');
 
 import Chart from 'chart.js/auto';
 
-class V_algo {
-	constructor(arr){
-		this.arr = [] || arr
-	}
 
-	constructRandomArray(n){
-		let i = n
-		while(i--)
-			this.arr.push(Math.round(Math.random(1,n)*n))	
-	}
 
-}
-
-class Init_Chart extends V_algo{
-	constructor(ctx){
-		super()
+class Init_Chart{
+	constructor(ctx,arr){
+		this.arr = []
 
 		this.chart = new Chart(ctx,{
 		type: 'bar',
@@ -58,34 +47,41 @@ class Init_Chart extends V_algo{
 
   setConfig(backgroundColor , {red , green ,blue ,opacity},label){
 
-	  console.log('configured')
+		const labels = this.arr.map( (item,index) => index )
 
-		this.labels = this.arr.map( (item,index) => index )
+		const background_Color  = this.arr.map(()=>  backgroundColor )
 
-		this.backgroundColor  = this.arr.map(()=>  backgroundColor )
+		const borderColor  = this.arr.map(()=> `rgba(${Math.round(Math.random(1,255)*red)},${Math.round(Math.random(1,255)*green)},${Math.round(Math.random(1,255)*blue)},${opacity})`)
 
-		this.borderColor  = this.arr.map(()=> `rgba(${Math.round(Math.random(1,255)*red)},${Math.round(Math.random(1,255)*green)},${Math.round(Math.random(1,255)*blue)},${opacity})`)
+
+		//updating chart config by setting up properties
 	
 		const data = this.chart.data.datasets[0]
-			console.log(data)
-		data.labels = this.labels
-		data.backgroundColor = this.backgroundColor
-		data.borderColor = this.borderColor
+
+		this.chart.data.labels = labels
+		
+		data.backgroundColor = background_Color
+		data.borderColor = borderColor
 		data.label = label
 
 		this.updateChart()
-		console.log(data)
   }
 
-
+	constructRandomArray(n){
+		let i = n
+		while(i--)
+			this.arr.push(Math.round(Math.random(1,n)*n))
+		this.updateChart()
+	}
   updateChart(){
   	this.chart.update()
   }
 }
 
-const visual = new V_algo()
-visual.constructRandomArray(10)
+
+
 const myChart  = new Init_Chart(ctx)
+myChart.constructRandomArray(10)
 
 myChart.setConfig('rgba(249, 212, 35, 1)',{
 	red : 45,
